@@ -3,6 +3,7 @@ const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password2");  
+const love_btns = document.querySelectorAll('.heart');
 
 // Show input error message
 function showError(input, message){
@@ -77,42 +78,39 @@ form.addEventListener("submit", function(e){
 
 // --------- Heart-----------//
 
-const love_btns = document.querySelectorAll('.heart');
-
 love_btns.forEach(love_btn => {
 	love_btn.addEventListener('mousedown', (e) => {
 		love_btn.style.background = '#fff';
 		love_btn.style.color = '#E7273F';
-		love_btn.querySelector('.text').innerHTML = '<span class="grey-text"> Thank you!</span>';
+		// love_btn.querySelector('.text').innerHTML = '<span class="grey-text"> Thank you!</span>';
+      
 
 		createHearts(love_btn.querySelector('.icon-container'));
 	});
 
-	// love_btn.addEventListener('mouseup', (e) => {
-	// 	love_btn.style.background = '#E7273F';
-	// 	love_btn.style.color = '#fff';
-	// 	love_btn.querySelector('.text').innerHTML = 'THANK YOU!';
-	// });
+	form.addEventListener('submit', (e) => {
+		love_btn.style.background = '#E7273F';
+		love_btn.style.color = '#fff';
+		love_btn.querySelector('.text').innerHTML = 'Submit!';
+	});
 })
 
-
 function createHearts(container) {
-	// create 5 hearts
-	for(let i=0; i<3; i++) {
+	for(let i=0; i< 4; i++) {
 		setTimeout(() => {
 			const heart= document.createElement('span');
 			heart.classList.add('love');
 			heart.innerHTML = '<i class="fas fa-heart"></i>';
-			heart.style.left = Math.random() * 100 + '%';
+			// heart.style.left = Math.random() * 100 + '%';
 			// heart.style.top = Math.random() * 100 + '%';
-			heart.style.fontSize = Math.random() * 20 + 5 + 'px';
-			heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+			// heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+			heart.style.animationDuration = Math.random() * 5 + 3 + 's';
 			container.appendChild(heart);
            
 
 			setTimeout(() => {
 				heart.remove();
-			}, 3000);
+			}, 1000);
 		}, i * 100)
 	}
 }
